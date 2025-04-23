@@ -1,0 +1,12 @@
+type Sample {
+  id: String
+  name: String
+  description: String
+  dateCreated: AWSTimestamp
+  dateUpdated: AWSTimestamp
+}
+
+type SampleConnection {
+  items: [Sample]
+  nextToken: String
+}

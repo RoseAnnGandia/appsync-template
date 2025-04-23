@@ -1,0 +1,46 @@
+meta {
+  name: Mutation.updateSample
+  type: graphql
+  seq: 2
+}
+
+post {
+  url: {{graphqlEndpoint}}
+  body: graphql
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: 
+}
+
+body:graphql {
+  mutation updateSample ( $id: ID!, $input: UpdateSampleInput!) {
+  	updateSample(id: $id, input: $input) {
+  		id
+      name
+      description
+      dateCreated
+      dateUpdated
+  	}
+  }
+}
+
+body:graphql:vars {
+  {
+    "id": "{{sampleId}}",
+  	"input": {
+      "name": "Update name",
+      "description": "Update description"
+    }
+  }
+}
+
+script:pre-request {
+  const token = require('./token');
+  await token.run();
+}

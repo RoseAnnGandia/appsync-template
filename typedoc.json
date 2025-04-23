@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["src/functions/"],
+  "out": "docs",
+  "plugin": ["typedoc-material-theme"],
+  "themeColor": "#cb9820"
+}

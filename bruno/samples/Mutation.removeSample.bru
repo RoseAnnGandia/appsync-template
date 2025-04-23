@@ -1,0 +1,36 @@
+meta {
+  name: Mutation.removeSample
+  type: graphql
+  seq: 5
+}
+
+post {
+  url: {{graphqlEndpoint}}
+  body: graphql
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: 
+}
+
+body:graphql {
+  mutation removeSample ( $id: ID!) {
+  	removeSample(id: $id) 
+  }
+}
+
+body:graphql:vars {
+  {
+    "id": "{{sampleId}}"
+  }
+}
+
+script:pre-request {
+  const token = require('./token');
+  await token.run();
+}

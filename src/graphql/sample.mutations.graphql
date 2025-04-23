@@ -1,0 +1,17 @@
+extend type Mutation {
+  createSample(input: CreateSampleInput!): Sample
+
+  updateSample(id: ID!, input: UpdateSampleInput!): Sample
+
+  removeSample(id: ID!): String
+}
+
+input CreateSampleInput {
+  name: String!
+  description: String!
+}
+
+input UpdateSampleInput {
+  name: String
+  description: String
+}

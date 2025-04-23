@@ -1,0 +1,5 @@
+extend type Query {
+  sample(id: ID!): Sample
+
+  samples(nextToken: String): SampleConnection
+}

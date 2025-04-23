@@ -1,0 +1,10 @@
+{
+  "createSampleInput": {
+    "name": "Sample Name",
+    "description": "Sample description"
+  },
+  "updateSampleInput": {
+    "name": "Update Name",
+    "description": "Update description"
+  }
+}

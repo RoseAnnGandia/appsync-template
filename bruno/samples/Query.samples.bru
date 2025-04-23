@@ -1,0 +1,45 @@
+meta {
+  name: Query.samples
+  type: graphql
+  seq: 4
+}
+
+post {
+  url: {{graphqlEndpoint}}
+  body: graphql
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: 
+}
+
+body:graphql {
+  query samples($nextToken: String) {
+  	samples(nextToken: $nextToken) {
+  		items {
+        id
+        name
+        description
+        dateCreated
+        dateUpdated
+      }
+      nextToken
+  	}
+  }
+}
+
+body:graphql:vars {
+  {
+  	"nextToken": ""
+  }
+}
+
+script:pre-request {
+  const token = require('./token');
+  await token.run();
+}

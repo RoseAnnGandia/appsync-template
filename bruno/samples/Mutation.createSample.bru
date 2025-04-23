@@ -1,0 +1,49 @@
+meta {
+  name: Mutation.createSample
+  type: graphql
+  seq: 1
+}
+
+post {
+  url: {{graphqlEndpoint}}
+  body: graphql
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: 
+}
+
+body:graphql {
+  mutation createSample ( $input: CreateSampleInput!) {
+  	createSample(input: $input) {
+  		id
+      name
+      description
+      dateCreated
+      dateUpdated
+  	}
+  }
+}
+
+body:graphql:vars {
+  {
+  	"input": {
+      "name": "Item name",
+      "description": "Item description."
+    }
+  }
+}
+
+script:pre-request {
+  const token = require('./token');
+  await token.run();
+}
+
+script:post-response {
+  bru.setEnvVar("sampleId", res.body.data.createSample.id);
+}
